@@ -1,3 +1,12 @@
+
+/*
+File Name:  Main.java
+Programmer:  Dante F
+Date:  Sunday, October 9, 2022
+Description:  Program that displays powers for a base
+              from exponent 1 up to the number inputted by the user.
+*/
+
 import java.util.Scanner;  // Import scanner for user inputs
 
 // Main Class
@@ -11,19 +20,24 @@ class Main {
 		int base = nums[0];
 		int exponent = nums[1];
 
-		if (exponent == 1) { // User inputted 1 as the exponent
-			System.out.println(base + " to the exponent 1 is " + base);
-		}
-		else {  // User inputted exponent greater than 1 
-			System.out.println(base + " to the exponent 1 is " + base);
+        // Print exponent to base of 1
+        System.out.println(base + " to the exponent 1 is " + base);
+
+		if (exponent > 1) { // User inputted exponent greater than 1
 
 			// Set the current base
 			long currentBase = base;
 
 			// Loop through exponents and print answers
 			for (int i = 2; i <= exponent; i++) {
+
+                // set calculated value to newNum
 				long newNum = currentBase * base;
+
+                // Print the base to the power of exponent with calculated value
 				System.out.println(base + " to the exponent "  + i + " is " + newNum);
+
+                // Set the calculated value to the currentBase to be used next loop
 				currentBase = newNum;
 			}
 		}
