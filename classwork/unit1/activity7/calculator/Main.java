@@ -12,124 +12,51 @@ import java.util.Scanner;
 
 class Main {
 
-    // User enters two numbers to divide together and value is printed to stdout
-    static void mathDivide() {
 
-        System.out.println("Enter two numbers to divide by each other.");
+    // Set number in calculator to value from user
+    static double addNum(double currentNum) {
 
-        double[] nums = getUserNums(2);
-        double num1 = nums[0];
-        double num2 = nums[1];
+        System.out.println("CURRENT NUMBER in Display: " + currentNum);
 
-        System.out.println("Answer: " + num1/num2);
+        double num = getUserNum("Number to add: ");
 
-    }
+        double total = num + currentNum;
+        System.out.println(currentNum + "+" + num + "=" + total);
 
+        System.out.println("CURRENT NUMBER: " + total);
 
-    // User enters two numbers to multiply together and value is printed to stdout
-    static void mathMultiply() {
-
-        System.out.println("Enter two numbers to multiply together.");
-
-        double[] nums = getUserNums(2);
-        double num1 = nums[0];
-        double num2 = nums[1];
-
-        System.out.println("Answer: " + num1*num2);
+        currentNum = total;
+        return currentNum;
 
     }
 
 
-    // User enters a value square root of value is printed to stdout
-    static void mathSqrt() {
+    // Set number in calculator to value from user
+    static double setNum(double currentNum) {
 
-        System.out.println("Enter a number to square root it.");
+        System.out.println("CURRENT NUMBER in Display: " + currentNum);
 
-        double[] nums = getUserNums(1);
-        double num1 = nums[0];
+        double num = getUserNum("Set CURRENT NUMBER to: ");
 
-        System.out.println("Square root of " + num1 + " is: " + Math.sqrt(num1));
+        System.out.println("CURRENT NUMBER changed from " + currentNum + " to " + num + ".");
+        currentNum = num;
 
-    }
-
-
-    // User enters a number and prints rounded value
-    static void mathRound() {
-
-        System.out.println("Enter a number to round it.");
-
-        double[] nums = getUserNums(1);
-        double num1 = nums[0];
-
-        System.out.println("Rounded value: " + Math.round(num1));
+        return currentNum;
 
     }
 
 
-    // Random number between 0 and 1 is printed to stdout
-    static void mathRandom() {
-
-        System.out.println("Random number between 0-1.00: " + Math.random());
-
-    }
-
-
-    // User enters two numbers and prints first number to the power of the second
-    static void mathPow() {
-
-        System.out.println("Enter two numbers to print the first value to the power of the second value.");
-
-        double[] nums = getUserNums(2);
-        double num1 = nums[0];
-        double num2 = nums[1];
-
-        System.out.println("Answer: " + Math.pow(num1, num2));
-
-    }
-
-
-    // Return numbers from user input (numberCount = number of numbers needed to be returned)
-    static double[] getUserNums(int numberCount) {
+    // Return numbers from user input 
+    static double getUserNum(String message) {
 
             Scanner sc = new Scanner(System.in);
 
+            // Get num from user from stdin
+            System.out.print(message);
+            double num = sc.nextDouble();
 
-        if (numberCount == 1) {  // Only one number needs to be returned from user
+            return num;
 
-            System.out.println("Your Number:");
-            double num1 = sc.nextDouble();
-
-            double[] nums = {num1};
-
-            return nums;
-
-        }
-        else {  // Two numbers need to be returned from user
-
-            System.out.println("Your Number 1:");
-            double num1 = sc.nextDouble();
-
-            System.out.println("Your Number 2:");
-            double num2 = sc.nextDouble();
-
-            double[] nums = {num1, num2};
-
-            return nums;
-
-        }
-    }
-
-
-    // User enters two numbers and prints largest number
-    static void mathMax() {
-
-        System.out.println("Enter two numbers to see which is largest.");
-
-        double[] nums = getUserNums(2);
-        double num1 = nums[0];
-        double num2 = nums[1];
-
-        System.out.println("Largest number is: " + Math.max(num1, num2));
     }
 
 
@@ -137,7 +64,7 @@ class Main {
     static void menu() {
 
         // Default value when calculator starts up
-        double currentNumber = 0;
+        double currentNum = 0;
 
         // Loop until user wants to exit program
         boolean menuLoop = true;
@@ -145,6 +72,7 @@ class Main {
 
             // Format Menu
             String message = "\n===== Math Main Menu =====\n"+
+                             "S: [=]    Enter NUMBER\n"+
                              "1: [+]    ADD number\n"+
                              "2: [-]    SUBTRACT number\n"+
                              "3: [x]    MULTIPLY number\n"+
@@ -153,7 +81,7 @@ class Main {
                              "6: [x^2]  SQUARE number\n"+
                              "7: [x^y]  RAISE number TO POWER\n"+
                              "8: [+/-]  CHANGE SIGN\n"+
-                             "\n   " + currentNumber + " << CURRENT NUMBER\n"+
+                             "\n   " + currentNum + " << CURRENT NUMBER in Display\n"+
                              "==========================\n"+
                              "0: Exit Program\n"+
                              "==========================\n";
@@ -169,47 +97,51 @@ class Main {
             // Loop until user enters valid input
             while (loop == true) {
 
-                System.out.println("Your choice:");
-                int choice = sc.nextInt();
+                System.out.print("Your choice: ");
+                String choice = sc.nextLine().toLowerCase();
 
                 switch (choice) {
-                    case 1:
-                        mathMax();
+                    case "s":
+                        currentNum = setNum(currentNum);
                         loop = false;
                         break;
-                    case 2:
-                        mathPow();
+                    case "1":
+                        currentNum = addNum(currentNum);
                         loop = false;
                         break;
-                    case 3:
-                        mathRandom();
+                    case "2":
+                        // currentNum = subtractNum(currentNum);
                         loop = false;
                         break;
-                    case 4:
-                        mathRound();
+                    case "3":
+                        // currentNum = multiplyNum(currentNum);
                         loop = false;
                         break;
-                    case 5:
-                        mathSqrt();
+                    case "4":
+                        // currentNum = divideNum(currentNum);
                         loop = false;
                         break;
-                    case 6:
-                        mathMultiply();
+                    case "5":
+                        // currentNum = sqrtNum(currentNum);
                         loop = false;
                         break;
-                    case 7:
-                        mathDivide();
+                    case "6":
+                        // currentNum = squareNum(currentNum);
                         loop = false;
                         break;
-                    case 8:
-                        mathDivide();
+                    case "7":
+                        // currentNum = raiseNum(currentNum);
                         loop = false;
                         break;
-                    case 0:
+                    case "8":
+                        // currentNum = changeSignNum(currentNum);
+                        loop = false;
+                        break;
+                    case "0":
                         loop = false;
                         menuLoop = false; // Stop menu loop and exit program
                         break;
-                    default: // If user inputs wrong int (no exceptions for erroneous user inputs)
+                    default: // User enters invalid input (no exceptions for erroneous user inputs)
                         System.out.println("Please choose a valid option, try again...\n");
                 }
             }
