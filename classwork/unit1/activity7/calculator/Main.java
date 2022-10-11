@@ -13,18 +13,101 @@ import java.util.Scanner;
 class Main {
 
 
-    // Set number in calculator to value from user
+    // Get num from user input and sqrt currentNum by user num
+    static double sqrtNum(double currentNum) {
+
+        System.out.println("CURRENT NUMBER in Display: " + currentNum);
+
+        System.out.println("Are you sure you want to square root: " + currentNum + "?");
+
+        if (getUserConfirmaton()) {  // User wants to square the number
+            currentNum = Math.sqrt(currentNum);
+            System.out.println("NEW! CURRENT NUMBER in Display: " + currentNum);
+        }
+        else {  // User doesn't want to square the number
+            System.out.println("CURRENT NUMBER NOT changed: " + currentNum);
+            System.out.println("Returning to calculator menu..");
+        }
+
+        return currentNum;
+
+    }
+
+
+    // Get num from user input and divide currentNum by user num
+    static double divideNum(double currentNum) {
+
+        System.out.println("CURRENT NUMBER in Display: " + currentNum);
+
+        double num = getUserNum("Number to divide by: ");
+
+        // Multplication Calculation
+        double total = currentNum / num;
+        System.out.println(currentNum + "/" + num + "=" + total);
+
+        System.out.println("CURRENT NUMBER: " + total);
+
+        // New num
+        currentNum = total;
+        return currentNum;
+
+    }
+
+
+    // Get num from user input and multiply currentNum by user num
+    static double multiplyNum(double currentNum) {
+
+        System.out.println("CURRENT NUMBER in Display: " + currentNum);
+
+        double num = getUserNum("Number to multiply by: ");
+
+        // Multplication Calculation
+        double total = currentNum * num;
+        System.out.println(currentNum + "x" + num + "=" + total);
+
+        System.out.println("CURRENT NUMBER: " + total);
+
+        // New num
+        currentNum = total;
+        return currentNum;
+
+    }
+
+
+    // Subtract user input number from currentNum in calculator "display"
+    static double subtractNum(double currentNum) {
+
+        System.out.println("CURRENT NUMBER in Display: " + currentNum);
+
+        double num = getUserNum("Number to subtract: ");
+
+        // Subtraction Calculation
+        double total = currentNum - num;
+        System.out.println(currentNum + "-" + num + "=" + total);
+
+        System.out.println("CURRENT NUMBER: " + total);
+
+        // New num
+        currentNum = total;
+        return currentNum;
+
+    }
+
+
+    // Add user input number to currentNum in calculator "display"
     static double addNum(double currentNum) {
 
         System.out.println("CURRENT NUMBER in Display: " + currentNum);
 
         double num = getUserNum("Number to add: ");
 
+        // Addition calculation
         double total = num + currentNum;
         System.out.println(currentNum + "+" + num + "=" + total);
 
         System.out.println("CURRENT NUMBER: " + total);
 
+        // New num
         currentNum = total;
         return currentNum;
 
@@ -39,10 +122,46 @@ class Main {
         double num = getUserNum("Set CURRENT NUMBER to: ");
 
         System.out.println("CURRENT NUMBER changed from " + currentNum + " to " + num + ".");
+
+        // New num
         currentNum = num;
 
         return currentNum;
 
+    }
+
+
+    // Return confirmation from user input 
+    static boolean getUserConfirmaton() {
+
+        Scanner sc = new Scanner(System.in);
+
+        boolean loop = true;
+        boolean confirmed = false; // User confirmation status
+
+        while (loop == true) {  // Basic error check loop 
+
+            // Get num from user from stdin
+            System.out.print("Are you sure? (Y)es or (N)o : ");
+
+            // Format input
+            String input = sc.nextLine().toLowerCase();
+            System.out.println(input);
+
+            if ((input == "yes") || (input == "y")) { // User wants to continue
+                confirmed = true;
+                loop = false;
+            }
+            else if ((input == "no") || (input == "n")) { // User doesn't want to continue
+                confirmed = false;
+                loop = false;
+            }
+            else {  // User entered invalid input
+                System.out.println("Please enter a valid input...");
+            }
+        }
+
+        return confirmed;  // Return answer
     }
 
 
@@ -110,19 +229,19 @@ class Main {
                         loop = false;
                         break;
                     case "2":
-                        // currentNum = subtractNum(currentNum);
+                        currentNum = subtractNum(currentNum);
                         loop = false;
                         break;
                     case "3":
-                        // currentNum = multiplyNum(currentNum);
+                        currentNum = multiplyNum(currentNum);
                         loop = false;
                         break;
                     case "4":
-                        // currentNum = divideNum(currentNum);
+                        currentNum = divideNum(currentNum);
                         loop = false;
                         break;
                     case "5":
-                        // currentNum = sqrtNum(currentNum);
+                        currentNum = sqrtNum(currentNum);
                         loop = false;
                         break;
                     case "6":
