@@ -162,10 +162,12 @@ class Main {
             // }
 
             // Get num from user from stdin
-            System.out.print("Are you sure?? (Y)es or (N)o: ");
-            String input = sc.nextLine().toLowerCase(); // format user input into lowercase
 
             while (loop == true) {  // Basic error check loop
+                                    //
+                System.out.print("Are you sure?? (Y)es or (N)o: ");
+                String input = sc.nextLine().toLowerCase(); // format user input into lowercase
+                                                            //
                 switch (input) {
                     case "yes":  // User wants to continue
                         confirmed = true;
