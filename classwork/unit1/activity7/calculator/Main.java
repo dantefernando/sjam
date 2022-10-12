@@ -13,6 +13,26 @@ import java.util.Scanner;
 class Main {
 
 
+    // Get num from user input and square currentNum 
+    static double squareNum(double currentNum) {
+
+        System.out.println("CURRENT NUMBER in Display: " + currentNum);
+
+        System.out.println("Are you sure you want to square: " + currentNum + "?");
+
+        if (getUserConfirmaton()) {  // User wants to square the number
+            currentNum = currentNum * currentNum;
+            System.out.println("NEW! CURRENT NUMBER in Display: " + currentNum);
+        }
+        else {  // User doesn't want to square the number
+            System.out.println("CURRENT NUMBER NOT changed: " + currentNum);
+        }
+
+        return currentNum;
+
+    }
+
+
     // Get num from user input and sqrt currentNum by user num
     static double sqrtNum(double currentNum) {
 
@@ -20,11 +40,11 @@ class Main {
 
         System.out.println("Are you sure you want to square root: " + currentNum + "?");
 
-        if (getUserConfirmaton()) {  // User wants to square the number
+        if (getUserConfirmaton()) {  // User wants to sqrt the number
             currentNum = Math.sqrt(currentNum);
             System.out.println("NEW! CURRENT NUMBER in Display: " + currentNum);
         }
-        else {  // User doesn't want to square the number
+        else {  // User doesn't want to sqrt the number
             System.out.println("CURRENT NUMBER NOT changed: " + currentNum);
         }
 
@@ -138,60 +158,34 @@ class Main {
         boolean loop = true;
         boolean confirmed = false; // User confirmation status
 
-        while (loop == true) {  // Basic error check loop 
-
-            // Get num from user from stdin
-            // System.out.print("Are you sure?? 1=Yes or 2=No: ");
-
-            // Format input
-            // Bug: I can't get strings to work for some reason so my dirty
-            // workaround is to use integers as inputs instead...
-            // otherwise I'd use "yes" and "no".. doesn't seem to work
-            // int input = sc.nextInt();
-
-            // if (input == 1) { // User wants to continue
-            //     confirmed = true;
-            //     loop = false;
-            // }
-            // else if (input == 2) { // User doesn't want to continue
-            //     confirmed = false;
-            //     loop = false;
-            // }
-            // else {  // User entered invalid input
-            //     System.out.println("Please enter a valid input...");
-            // }
-
-            // Get num from user from stdin
-
-            while (loop == true) {  // Basic error check loop
-                                    //
-                System.out.print("Are you sure?? (Y)es or (N)o: ");
-                String input = sc.nextLine().toLowerCase(); // format user input into lowercase
-                                                            //
-                switch (input) {
-                    case "yes":  // User wants to continue
-                        confirmed = true;
-                        loop = false;
-                        break;
-                    case "y":   // User wants to continue
-                        confirmed = true;
-                        loop = false;
-                        break;
-                    case "no":  // User doesn't want to continue
-                        confirmed = false;
-                        loop = false;
-                        break;
-                    case "n":  // User doesn't want to continue
-                        confirmed = false;
-                        loop = false;
-                        break;
-                    default: // User inputs invalid input
-                        System.out.println("Please enter a valid input try again...");
-                        break;
-                }
+        while (loop == true) {  // Basic error check loop
+                                //
+            System.out.print("Are you sure?? (Y)es or (N)o: ");
+            String input = sc.nextLine().toLowerCase(); // format user input into lowercase
+                                                        //
+            switch (input) {
+                case "yes":  // User wants to continue
+                    confirmed = true;
+                    loop = false;
+                    break;
+                case "y":   // User wants to continue
+                    confirmed = true;
+                    loop = false;
+                    break;
+                case "no":  // User doesn't want to continue
+                    confirmed = false;
+                    loop = false;
+                    break;
+                case "n":  // User doesn't want to continue
+                    confirmed = false;
+                    loop = false;
+                    break;
+                default: // User inputs invalid input
+                    System.out.println("Please enter a valid input try again...");
+                    break;
             }
-
         }
+
         return confirmed;  // Return answer
     }
 
@@ -276,7 +270,7 @@ class Main {
                         loop = false;
                         break;
                     case "6":
-                        // currentNum = squareNum(currentNum);
+                        currentNum = squareNum(currentNum);
                         loop = false;
                         break;
                     case "7":
