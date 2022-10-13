@@ -8,7 +8,7 @@ Description:  Text-based non-scientific calculator.
 */
 
 
-import java.util.Scanner;
+import java.util.Scanner;  // Used for user inputs
 
 class Main {
 
@@ -22,6 +22,7 @@ class Main {
 
         System.out.println("Are you sure you want to set number in display to 0?");
 
+        // Confirm user wants to continue
         if (getUserConfirmaton()) {  // User wants to square the number
             currentNum = 0;
             System.out.println("NEW! CURRENT NUMBER in Display: " + currentNum);
@@ -30,6 +31,7 @@ class Main {
             System.out.println("CURRENT NUMBER NOT changed: " + currentNum);
         }
 
+        // Return final value
         return currentNum;
 
     }
@@ -43,6 +45,7 @@ class Main {
 
         System.out.println("Are you sure you want to flip sign of " + currentNum + "?");
 
+        // Confirm user wants to continue
         if (getUserConfirmaton()) {  // User wants to flip sign of num
             currentNum *= -1;
             System.out.println("NEW! CURRENT NUMBER in Display: " + currentNum);
@@ -51,6 +54,7 @@ class Main {
             System.out.println("CURRENT NUMBER NOT changed: " + currentNum);
         }
 
+        // Return final value
         return currentNum;
 
     }
@@ -77,6 +81,7 @@ class Main {
 
         System.out.println("Number raised! CURRENT NUMBER in Display: " + currentNum);
 
+        // Return final value
         return currentNum;
 
     }
@@ -90,6 +95,7 @@ class Main {
 
         System.out.println("Are you sure you want to square: " + currentNum + "?");
 
+        // Confirm user wants to continue
         if (getUserConfirmaton()) {  // User wants to square the number
             currentNum = currentNum * currentNum;
             System.out.println("NEW! CURRENT NUMBER in Display: " + currentNum);
@@ -98,6 +104,7 @@ class Main {
             System.out.println("CURRENT NUMBER NOT changed: " + currentNum);
         }
 
+        // Return final value
         return currentNum;
 
     }
@@ -111,6 +118,7 @@ class Main {
 
         System.out.println("Are you sure you want to square root: " + currentNum + "?");
 
+        // Confirm user wants to continue
         if (getUserConfirmaton()) {  // User wants to sqrt the number
             currentNum = Math.sqrt(currentNum);
             System.out.println("NEW! CURRENT NUMBER in Display: " + currentNum);
@@ -119,6 +127,7 @@ class Main {
             System.out.println("CURRENT NUMBER NOT changed: " + currentNum);
         }
 
+        // Return final value
         return currentNum;
 
     }
@@ -130,16 +139,21 @@ class Main {
 
         System.out.println("CURRENT NUMBER in Display: " + currentNum);
 
+        // get user num from user input to divide by
         double num = getUserNum("Number to divide by: ");
 
-        // Multplication Calculation
+        // division Calculation
         double total = currentNum / num;
+        
+        // print operation verbosely
         System.out.println(currentNum + "/" + num + "=" + total);
 
         System.out.println("CURRENT NUMBER: " + total);
 
-        // New num
+        // assign new currentNum to total
         currentNum = total;
+
+        // Return final value
         return currentNum;
 
     }
@@ -151,6 +165,7 @@ class Main {
 
         System.out.println("CURRENT NUMBER in Display: " + currentNum);
 
+        // get num from user input to multiply by
         double num = getUserNum("Number to multiply by: ");
 
         // Multplication Calculation
@@ -159,8 +174,10 @@ class Main {
 
         System.out.println("CURRENT NUMBER: " + total);
 
-        // New num
+        // assign new currentNum to new total
         currentNum = total;
+
+        // Return final value
         return currentNum;
 
     }
@@ -172,16 +189,19 @@ class Main {
 
         System.out.println("CURRENT NUMBER in Display: " + currentNum);
 
+        // get number to subtract by from user input
         double num = getUserNum("Number to subtract: ");
 
-        // Subtraction Calculation
+        // Subtraction Calculation with new num entered by user
         double total = currentNum - num;
         System.out.println(currentNum + "-" + num + "=" + total);
 
         System.out.println("CURRENT NUMBER: " + total);
 
-        // New num
+        // assign new currentNum to new total
         currentNum = total;
+
+        // Return final value
         return currentNum;
 
     }
@@ -193,6 +213,7 @@ class Main {
 
         System.out.println("CURRENT NUMBER in Display: " + currentNum);
 
+        // get num to add to currentNum from user input
         double num = getUserNum("Number to add: ");
 
         // Addition calculation
@@ -201,8 +222,10 @@ class Main {
 
         System.out.println("CURRENT NUMBER: " + total);
 
-        // New num
+        // assign new currentNum to new total after addition
         currentNum = total;
+
+        // Return final value
         return currentNum;
 
     }
@@ -214,13 +237,15 @@ class Main {
 
         System.out.println("CURRENT NUMBER in Display: " + currentNum);
 
+        // get num to be changed to from user input
         double num = getUserNum("Set CURRENT NUMBER to: ");
 
         System.out.println("CURRENT NUMBER changed from " + currentNum + " to " + num + ".");
 
-        // New num
+        // Set the new currentNum as the num entered by user
         currentNum = num;
 
+        // Return final value
         return currentNum;
 
     }
@@ -236,8 +261,10 @@ class Main {
         boolean loop = true;
         boolean confirmed = false; // User confirmation status
 
+        // Keep looping until user enters valid input
+        // (loop until user chooses either YES or NO
         while (loop == true) {  // Basic error check loop
-                                //
+                           
             System.out.print("Are you sure?? (Y)es or (N)o: ");
             String input = sc.nextLine().toLowerCase(); // format user input into lowercase
                                                         //
@@ -258,7 +285,7 @@ class Main {
                     confirmed = false;
                     loop = false;
                     break;
-                default: // User inputs invalid input
+                default: // User inputs invalid input / none of defined options
                     System.out.println("Please enter a valid input try again...");
                     break;
             }
@@ -278,12 +305,14 @@ class Main {
             System.out.print(message);
             double num = sc.nextDouble();
 
+            // return num entered by user
             return num;
 
     }
 
 
-    // Interactive user interface for user to choose operations
+    // Interactive MENU acts as user interface 
+    // for user to choose operations
     // and calculate values.
     static void menu() {
 
@@ -381,7 +410,7 @@ class Main {
     }
 
 
-    // Main
+    // Main method runs on startup
     public static void main(String[] args) { 
 
         menu();  // Run menu on startup
