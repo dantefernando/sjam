@@ -13,7 +13,77 @@ import java.util.Scanner;
 class Main {
 
 
+    // Set currentNum in display to 0
+    // return new currentNum (0) or original currentNum if user
+    // didn't confirm reset
+    static double resetCalculator(double currentNum) {
+
+        System.out.println("CURRENT NUMBER in Display: " + currentNum);
+
+        System.out.println("Are you sure you want to set number in display to 0?");
+
+        if (getUserConfirmaton()) {  // User wants to square the number
+            currentNum = 0;
+            System.out.println("NEW! CURRENT NUMBER in Display: " + currentNum);
+        }
+        else {  // User doesn't want to square the number
+            System.out.println("CURRENT NUMBER NOT changed: " + currentNum);
+        }
+
+        return currentNum;
+
+    }
+
+
+    // Change sign of currentNum aka emulate (+/-) button
+    // return new currentNum after changing sign
+    static double changeSignNum(double currentNum) {
+
+        System.out.println("CURRENT NUMBER in Display: " + currentNum);
+
+        System.out.println("Are you sure you want to flip sign of " + currentNum + "?");
+
+        if (getUserConfirmaton()) {  // User wants to flip sign of num
+            currentNum *= -1;
+            System.out.println("NEW! CURRENT NUMBER in Display: " + currentNum);
+        }
+        else {  // User doesn't want to flip sign of num
+            System.out.println("CURRENT NUMBER NOT changed: " + currentNum);
+        }
+
+        return currentNum;
+
+    }
+
+
+    // Get num from user input raise the currentNum to num entered by user
+    // return new currentNum after raising currentNum to num entered
+    // by user
+    static double raiseNum(double currentNum) {
+
+        System.out.println("CURRENT NUMBER in Display: " + currentNum);
+
+        // User enter number to raise by
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Number to raise " + currentNum + " by: ");
+
+        // Get user input
+        double num = sc.nextDouble();
+
+        // Raise number to given power
+        currentNum = Math.pow(currentNum, num);
+
+        System.out.println("Number raised! CURRENT NUMBER in Display: " + currentNum);
+
+        return currentNum;
+
+    }
+
+
     // Get num from user input and square currentNum 
+    // return new currentNum after x^2 operation
     static double squareNum(double currentNum) {
 
         System.out.println("CURRENT NUMBER in Display: " + currentNum);
@@ -34,6 +104,7 @@ class Main {
 
 
     // Get num from user input and sqrt currentNum by user num
+    // return new currentNum after sqrt operation
     static double sqrtNum(double currentNum) {
 
         System.out.println("CURRENT NUMBER in Display: " + currentNum);
@@ -54,6 +125,7 @@ class Main {
 
 
     // Get num from user input and divide currentNum by user num
+    // return new currentNum after division operation
     static double divideNum(double currentNum) {
 
         System.out.println("CURRENT NUMBER in Display: " + currentNum);
@@ -74,6 +146,7 @@ class Main {
 
 
     // Get num from user input and multiply currentNum by user num
+    // return new currentNum after multiplication operation
     static double multiplyNum(double currentNum) {
 
         System.out.println("CURRENT NUMBER in Display: " + currentNum);
@@ -94,6 +167,7 @@ class Main {
 
 
     // Subtract user input number from currentNum in calculator "display"
+    // return new currentNum after subtraction operation
     static double subtractNum(double currentNum) {
 
         System.out.println("CURRENT NUMBER in Display: " + currentNum);
@@ -114,6 +188,7 @@ class Main {
 
 
     // Add user input number to currentNum in calculator "display"
+    // return new currentNum after addition operation
     static double addNum(double currentNum) {
 
         System.out.println("CURRENT NUMBER in Display: " + currentNum);
@@ -134,6 +209,7 @@ class Main {
 
 
     // Set number in calculator to value from user
+    // return new currentNum set by user
     static double setNum(double currentNum) {
 
         System.out.println("CURRENT NUMBER in Display: " + currentNum);
@@ -150,7 +226,9 @@ class Main {
     }
 
 
-    // Return confirmation from user input 
+    // Confirm that the user wants to continue with a mathematical operation
+    // return true if user wants to continue
+    // return false if user doesn't want to continue
     static boolean getUserConfirmaton() {
 
         Scanner sc = new Scanner(System.in);
@@ -190,7 +268,8 @@ class Main {
     }
 
 
-    // Return numbers from user input 
+    // Get number from user input
+    // return number entered by user
     static double getUserNum(String message) {
 
             Scanner sc = new Scanner(System.in);
@@ -204,7 +283,8 @@ class Main {
     }
 
 
-    // Acts as an user interface for user to calculate values.
+    // Interactive user interface for user to choose operations
+    // and calculate values.
     static void menu() {
 
         // Default value when calculator starts up
@@ -216,15 +296,16 @@ class Main {
 
             // Format Menu
             String message = "\n===== Math Main Menu =====\n"+
-                             "S: [=]    Enter NUMBER\n"+
-                             "1: [+]    ADD number\n"+
-                             "2: [-]    SUBTRACT number\n"+
-                             "3: [x]    MULTIPLY number\n"+
-                             "4: [/]    DIVIDE number\n"+
-                             "5: [sqrt] SQUARE ROOT number\n"+
-                             "6: [x^2]  SQUARE number\n"+
-                             "7: [x^y]  RAISE number TO POWER\n"+
-                             "8: [+/-]  CHANGE SIGN\n"+
+                             "S: [=]     Enter NUMBER\n"+
+                             "1: [+]     ADD number\n"+
+                             "2: [-]     SUBTRACT number\n"+
+                             "3: [x]     MULTIPLY number\n"+
+                             "4: [/]     DIVIDE number\n"+
+                             "5: [sqrt]  SQUARE ROOT number\n"+
+                             "6: [x^2]   SQUARE number\n"+
+                             "7: [x^y]   RAISE number TO POWER\n"+
+                             "8: [+/-]   CHANGE SIGN\n"+
+                             "9: [AC/CE] CLEAR DISPLAY\n"+
                              "\n   " + currentNum + " << CURRENT NUMBER in Display\n"+
                              "==========================\n"+
                              "0: Exit Program\n"+
@@ -239,53 +320,60 @@ class Main {
             boolean loop = true;
 
             // Loop until user enters valid input
+            // if loop == false break loop
             while (loop == true) {
 
                 System.out.print("Your choice: ");
+
+                // format input
                 String choice = sc.nextLine().toLowerCase();
 
                 switch (choice) {
-                    case "s":
+                    case "s":  // User wants to set the currentNum to another num
                         currentNum = setNum(currentNum);
                         loop = false;
                         break;
-                    case "1":
+                    case "1":  // User wants to add a num to the currentNum
                         currentNum = addNum(currentNum);
                         loop = false;
                         break;
-                    case "2":
+                    case "2":  // User wants to subtract the currentNum by another num
                         currentNum = subtractNum(currentNum);
                         loop = false;
                         break;
-                    case "3":
+                    case "3":  // User wants to multiply the currentNum by another num
                         currentNum = multiplyNum(currentNum);
                         loop = false;
                         break;
-                    case "4":
+                    case "4":  // User wants to divide the currentNum
                         currentNum = divideNum(currentNum);
                         loop = false;
                         break;
-                    case "5":
+                    case "5":  // User wants to sqrt the currentNum
                         currentNum = sqrtNum(currentNum);
                         loop = false;
                         break;
-                    case "6":
+                    case "6":  // User wants to square the currentNum
                         currentNum = squareNum(currentNum);
                         loop = false;
                         break;
-                    case "7":
-                        // currentNum = raiseNum(currentNum);
+                    case "7":  // User wants to raise currentNum
+                        currentNum = raiseNum(currentNum);
                         loop = false;
                         break;
-                    case "8":
-                        // currentNum = changeSignNum(currentNum);
+                    case "8":  // User wants to change sign of currentNum
+                        currentNum = changeSignNum(currentNum);
                         loop = false;
                         break;
-                    case "0":
+                    case "9":  // User wants to reset calculator
+                        currentNum = resetCalculator(currentNum);
+                        loop = false;
+                        break;
+                    case "0":  // User wants to exit program
                         loop = false;
                         menuLoop = false; // Stop menu loop and exit program
                         break;
-                    default: // User enters invalid input (no exceptions for erroneous user inputs)
+                    default:  // User enters invalid input (no exceptions for erroneous user inputs)
                         System.out.println("Please choose a valid option, try again...\n");
                 }
             }
@@ -293,9 +381,10 @@ class Main {
     }
 
 
+    // Main
     public static void main(String[] args) { 
 
-        menu();
+        menu();  // Run menu on startup
         System.out.println("Goodbye!"); // User has exited the main menu interface
 
     }
