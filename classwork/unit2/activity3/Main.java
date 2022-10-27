@@ -6,9 +6,9 @@ class Main {
 
     static void compareWords(String word0, String word1) {
 
-        // Convert strings to char array
-        char[] word0Array = word0.toCharArray();
-        char[] word1Array = word1.toCharArray();
+        // Convert strings to char arrays without spaces and all lowercase
+        char[] word0Array = word0.replaceAll(" ", "").toLowerCase().toCharArray();
+        char[] word1Array = word1.replaceAll(" ", "").toLowerCase().toCharArray();
 
         // Sort arrays alphabetically
         Arrays.sort(word0Array);
@@ -19,15 +19,11 @@ class Main {
         String word1Sorted = new String(word1Array);
 
         // Check if strings are equal
-        if (word0Sorted == word1Sorted) {
-            System.out.println("IS ANAGRAM!");
-            System.out.println(word0Sorted);
-            System.out.println(word1Sorted);
+        if (word0Sorted.equals(word1Sorted)) {
+            System.out.println(word0 + " is an anagram of " + word1);
         }
         else {
-            System.out.println("NOT ANAGRAM!");
-            System.out.println(word0Sorted);
-            System.out.println(word1Sorted);
+            System.out.println(word0 + " is NOT an anagram of " + word1);
         }
 
     }
@@ -40,11 +36,11 @@ class Main {
         Scanner sc = new Scanner(System.in);
 
         // Get first word 
-        System.out.println("Enter first word to be checked: ");
+        System.out.print("Enter first word to be checked: ");
         String word0 = sc.nextLine();
 
         // Get second word 
-        System.out.println("Enter second word to be checked: ");
+        System.out.print("Enter second word to be checked: ");
         String word1 = sc.nextLine();
 
         // Array with first and second word
