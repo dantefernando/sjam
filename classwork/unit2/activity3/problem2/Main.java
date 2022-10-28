@@ -1,15 +1,12 @@
 /*
 File Name:  Main.java
 Programmer:  Dante F
-Date:  Sunday, October 27, 2022
+Date:  Sunday, October 28, 2022
 Description: A program that checks if two words are
-             anagrams of each other WITHOU USING SORTING METHODS.
+             anagrams of each other WITHOUT USING SORTING METHODS.
 */
 
-
 import java.util.Scanner;  // User stdin inputs 
-import java.util.Arrays;  // For Array sorting
-
 
 class Main {
 
