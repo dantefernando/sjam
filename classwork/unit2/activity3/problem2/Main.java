@@ -13,28 +13,47 @@ import java.util.Arrays;  // For Array sorting
 
 class Main {
 
+    // Method that compares two words and checks if they are
+    // anagrams of each other WITHOUT using sorting methods
     static void compareWords(String word0, String word1) {
 
         // Convert strings to char arrays without spaces and all lowercase
         char[] word0Array = word0.replaceAll(" ", "").toLowerCase().toCharArray();
         char[] word1Array = word1.replaceAll(" ", "").toLowerCase().toCharArray();
 
-        // Sort arrays alphabetically
-        Arrays.sort(word0Array);
-        Arrays.sort(word1Array);
+        // Array to keep count of how many times each letter
+        // appears in each word
+        int[] letterCount = new int[26];
 
-        // Convert arrays to strings
-        String word0Sorted = new String(word0Array);
-        String word1Sorted = new String(word1Array);
+        // Iterate through characters of word0
+        for (char letter: word0Array) {
+            int ascii = letter;  // Convert to ASCII 
+            int letterIndex = ascii - 97;  // Index for letterCount
+            letterCount[letterIndex]++;  // Add one to the count for that letter
+        }
 
-        // Check if strings are equal
-        if (word0Sorted.equals(word1Sorted)) {
+        // Iterate through characters of word1
+        for (char letter: word1Array) {
+            int ascii = letter;  // Convert to ASCII 
+            int letterIndex = ascii - 97;  // Index for letterCount
+            letterCount[letterIndex]--;  // takeaway one to the count for that letter
+        }
+
+        // Check if array is all 0's 
+        // (both words are anagrams)
+        boolean isAnagram = true;
+        for (int i : letterCount) {
+            if (i != 0) {
+                isAnagram = false;
+            }
+        }
+
+        if (isAnagram == true) {  // Words are anagrams
             System.out.println(word0 + " is an anagram of " + word1);
         }
-        else {
+        else {  // Words are not anagrams
             System.out.println(word0 + " is NOT an anagram of " + word1);
         }
-
     }
 
 
@@ -74,6 +93,4 @@ class Main {
         compareWords(word0, word1);
 
     }
-
-
 }
