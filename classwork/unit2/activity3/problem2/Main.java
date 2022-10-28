@@ -2,9 +2,8 @@
 File Name:  Main.java
 Programmer:  Dante F
 Date:  Sunday, October 27, 2022
-Description: Program that compares two words and 
-             checks if they are anagrams 
-             USING SORTING METHODS.
+Description: A program that checks if two words are
+             anagrams of each other WITHOU USING SORTING METHODS.
 */
 
 
@@ -14,8 +13,6 @@ import java.util.Arrays;  // For Array sorting
 
 class Main {
 
-    // Compare two words and check if they are anagrams
-    // or not
     static void compareWords(String word0, String word1) {
 
         // Convert strings to char arrays without spaces and all lowercase
@@ -77,4 +74,6 @@ class Main {
         compareWords(word0, word1);
 
     }
+
+
 }
