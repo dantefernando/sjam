@@ -23,25 +23,34 @@ class Main {
         int[] letterCount = new int[26];
 
         // Iterate through characters of word0
+        // and count appearance of each letter in word
+        // and incremend count in letterCount[]
         for (char letter: word0Array) {
-            int ascii = letter;  // Convert to ASCII 
+            int ascii = letter;  // Convert char to ASCII int value
             int letterIndex = ascii - 97;  // Index for letterCount
             letterCount[letterIndex]++;  // Add one to the count for that letter
         }
 
         // Iterate through characters of word1
+        // and count appearance of each letter in word
+        // and store in letterCount[]
         for (char letter: word1Array) {
-            int ascii = letter;  // Convert to ASCII 
+            int ascii = letter;  // Convert char to ASCII int value
             int letterIndex = ascii - 97;  // Index for letterCount
-            letterCount[letterIndex]--;  // takeaway one to the count for that letter
+            letterCount[letterIndex]--;  // subtract one from the count for that letter
         }
+
+        // If letterCount is all 0's, that means that both
+        // words are anagrams of each other.
 
         // Check if array is all 0's 
         // (both words are anagrams)
         boolean isAnagram = true;
-        for (int i : letterCount) {
-            if (i != 0) {
-                isAnagram = false;
+        for (int i : letterCount) {  // Iterate through elements of array
+            if (i != 0) {  // Words are not anagrams of each other
+                isAnagram = false; 
+                break;  // break loop to prevent checking rest of letters
+                        // unnecessarily
             }
         }
 
@@ -60,11 +69,11 @@ class Main {
         
         Scanner sc = new Scanner(System.in);
 
-        // Get first word 
+        // Get first word from user
         System.out.print("Enter first word to be checked: ");
         String word0 = sc.nextLine();
 
-        // Get second word 
+        // Get second word from user
         System.out.print("Enter second word to be checked: ");
         String word1 = sc.nextLine();
 
@@ -80,9 +89,10 @@ class Main {
     // Main
     public static void main(String[] args) {
 
-        // Get words from user
+        // Get words from user stored in array
         String[] words = getWords();
 
+        // Get individual words from array
         String word0 = words[0];
         String word1 = words[1];
 
