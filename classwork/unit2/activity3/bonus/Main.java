@@ -9,7 +9,7 @@ Description: Program that compares two words and
 
 
 import java.util.Scanner;  // User stdin inputs 
-import java.util.Arrays;  // For Array sorting
+import java.util.Arrays;  // For Char Array sorting
 
 
 class Main {
@@ -32,10 +32,10 @@ class Main {
 
         // Check if strings are equal
         if (word0Sorted.equals(word1Sorted)) {
-            return true;
+            return true;  // The words are anagrams
         }
         else {
-            return false;
+            return false;  //  The words are NOT anagrams
         }
 
     }
@@ -133,8 +133,8 @@ class Main {
     // Main
     public static void main(String[] args) {
 
-        // Menu
-        menu();
+        
+        menu();  // Menu interface
 
         System.out.println("Exited, Goodbye!"); // User has exited the main menu interface
     }
