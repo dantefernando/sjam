@@ -1,13 +1,13 @@
 /*
 File Name:  Main.java
 Programmer:  Dante F
-Date:  Sunday, October 28, 2022
+Date:  Wednesday, Novemember 2, 2022
 Description: A program that checks if two words are
              anagrams of each other WITHOUT USING SORTING METHODS.
 */
 
 
-import java.util.Scanner;  // User stdin inputs 
+import java.util.Scanner;  // For User stdin inputs 
 
 class Main {
 
@@ -56,6 +56,8 @@ class Main {
             }
         }
 
+        // Return false if words are not anagrams
+        // Return true if words are anagrams
         return anagram;
     }
 
@@ -134,11 +136,11 @@ class Main {
                             System.out.println(word0 + " is NOT an anagram of " + word1);
                         }
 
-                        loop = false;
+                        loop = false;  // User valid input break loop
                         break;
 
                     case "0":  // User wants to exit program
-                        loop = false;
+                        loop = false;  // User valid input break loop
                         menuLoop = false; // Stop menu loop and exit program
                         break;
                     default:  // User enters invalid input (no exceptions for erroneous user inputs)
@@ -149,11 +151,11 @@ class Main {
     }
 
 
-    // Main
+    // Main method
     public static void main(String[] args) {
 
-        // Menu
-        menu();
+        
+        menu();  // Menu interface
 
         System.out.println("Exited, Goodbye!"); // User has exited the main menu interface
     }
