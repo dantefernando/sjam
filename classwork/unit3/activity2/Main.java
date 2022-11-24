@@ -1,9 +1,9 @@
 /*
 File Name:  Main.java
 Programmer:  Dante F
-Date:  Friday, Novemember 11, 2022
-Description: Simulates a teacher grade book with
-             5 students
+Date:  Friday, Novemember 24, 2022
+Description: recursion calculations calculator 
+            menu activity program 
 */
 
 
