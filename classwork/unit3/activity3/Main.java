@@ -101,6 +101,8 @@ class Main {
         }
         catch (FileNotFoundException e) {  // File not found
             System.out.println("An error occurred. File not found.");
+            System.out.println("Exiting...");
+            System.exit(1);
             // e.printStackTrace();  // trace how the error occured
         }
 
@@ -110,10 +112,7 @@ class Main {
     }
 
 
-    static void search(String num) {
-
-        // read file and get array of file contents
-        ArrayList<String> file = getFile();
+    static void search(String num, ArrayList<String> file) {
 
         // search using linear search
         linearSearch(num, file);
@@ -146,8 +145,12 @@ class Main {
 
         while (loop == true) {
 
+            // read file and get array of file contents
+            ArrayList<String> file = getFile();
+
             String num = getNum();  // get reference number
-            search(num);  // search using reference number
+                                    //
+            search(num, file);  // search using reference number
 
         }
         System.out.println("Exited, Goodbye!"); // User has exited 
