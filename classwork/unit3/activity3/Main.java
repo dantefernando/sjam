@@ -11,14 +11,6 @@ import java.io.File; // import the File class
 import java.io.FileNotFoundException; // import class to handle errors
 
 
-// - import booklist.txt as arraylist
-// - get reference number from user
-// - search for book using linear search
-// - TODO search for book using binary search
-// - TODO if found, display title of book
-// - TODO if not found, display message that book wasn't found
-
-
 class Main {
 
 
@@ -93,6 +85,7 @@ class Main {
     // and return arraylist of file contents
     static ArrayList<String> getFile() {
 
+        // create file arraylist
         ArrayList<String> file = new ArrayList<String>();
 
         try {  // try to read the file
