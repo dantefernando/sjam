@@ -11,17 +11,12 @@ import java.io.File; // import the File class
 import java.io.FileNotFoundException; // import class to handle errors
 
 
-// import java.util.Collections;  // Sorting Arraylists
-
-        // Create ArrayList for database
-        // ArrayList<String> database = new ArrayList<String>();
-
 // - import booklist.txt as arraylist
 // - get reference number from user
-// - search for book using linear and binary search
-// - if found, display title of book
-// - if not found, display message that book wasn't found
-
+// - search for book using linear search
+// - TODO search for book using binary search
+// - TODO if found, display title of book
+// - TODO if not found, display message that book wasn't found
 
 
 class Main {
@@ -31,7 +26,44 @@ class Main {
     // for the reference number
     static void binarySearch(String num, ArrayList<String> file) {
 
-        return;
+        // new arraylist with just reference nums in them
+        ArrayList<Integer> refNums = new ArrayList<Integer>();
+
+        // Create array with just reference numbers in them
+        for (int i = 0; i < file.size(); i += 2) {
+            refNums.add(Integer.parseInt(file.get(i)));
+        }
+
+
+        int left = 0;  // left index of array list
+        int right = refNums.size() - 1;  // Right index of arraylist
+
+        while (left <= right) {
+
+            // find middle of arraylist
+            int mid = Math.floorDiv((right + left),2);
+
+            if (refNums.get(mid) == Integer.parseInt(num)) {  // middle is target num
+                //BOOK FOUND!
+                String title = file.get((mid*2) + 1);  // Name of book
+
+                String msg = "BINARY SEARCH RESULTS:\n" +
+                    "\nBook Reference Number: " + file.get((mid*2)) +
+                    "\nBook Title: " + title + "\n";
+
+                System.out.println(msg);
+                return;
+            }
+            else if (refNums.get(mid) < Integer.parseInt(num)) {  // target num is greater than middle
+                left = mid + 1;
+            }
+            else {  // target num is less than middle 
+                right = mid - 1;
+            }
+
+        }
+
+        System.out.println("Binary search unsuccessful, didn't find reference number...");
 
     }
 
@@ -107,6 +139,7 @@ class Main {
         // get reference num
         System.out.print("Enter reference number to search up: ");
         String num = sc.nextLine();
+        System.out.println();
 
         return num;
 
