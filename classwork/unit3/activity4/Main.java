@@ -21,6 +21,38 @@ import java.util.concurrent.ThreadLocalRandom;  // used for random nums
 
 class Main {
 
+    // selection algorithm that displays 
+    // a sorted arraylist
+    static void selection(ArrayList<Integer> nums) {
+        int i, j, minValue, minIndex, temp = 0;
+
+        // Loop counters and comparisonCounter
+        int loopCounter, comparisonCounter = 0;
+
+        for (i = 0; i < nums.size(); i++) {
+
+            minValue = nums.get(i);
+            minIndex = i;
+
+            for (j = i; j< nums.size(); j++) {
+            
+                if (nums.get(j) < minValue) {
+                    minValue = nums.get(j);
+                    minIndex = j;
+                }
+            }
+
+            if (minValue < nums.get(i)) {
+                temp = nums.get(i);
+                nums.set(i, nums.get(minIndex));
+                nums.set(minIndex, temp);
+            }
+        }
+
+        System.out.println("Selection Sort:");
+        System.out.println(nums);
+    }
+
 
     // display randomly generated nums to user
     static void displayNums(ArrayList<Integer> nums) {
@@ -83,8 +115,8 @@ class Main {
         // display formatted nums 
         displayNums(nums);
 
-        // sort algorithms
-        // selection(nums);
+        // sorting algorithms
+        selection(nums);
         // bubble(nums);
         // insertion(nums);
         // quick(nums);
