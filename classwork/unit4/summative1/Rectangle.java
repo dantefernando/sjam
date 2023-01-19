@@ -3,6 +3,47 @@ public class Rectangle {
 
     int left, bottom, width, height;
 
+
+    // return true if rect is entirely within current rectangle
+    public boolean contains(Rectangle rect) {
+        // left = x, bottom = y
+        
+        // find 4 coords of each corner of this rectangle
+        int[] aBottomLeft = {this.left, this.bottom};
+        int[] aBottomRight = {this.left+this.width, this.bottom};
+        int[] aTopLeft = {this.left, this.bottom+this.height};
+        int[] aTopRight = {this.left+this.width, this.bottom+this.height};
+
+        // find 4 coords of each corner of rect
+        int[] bBottomLeft = {rect.left, rect.bottom};
+        int[] bBottomRight = {rect.left+rect.width, rect.bottom};
+        int[] bTopLeft = {rect.left, rect.bottom+rect.height};
+        int[] bTopRight = {rect.left+rect.width, rect.bottom+rect.height};
+
+        // rectangleB bottom left x coord in range:
+        if (aBottomLeft[0]<=bBottomLeft[0]<=aBottomRight[0]) {  // in range
+                                                                //
+            // rectangleB bottom left y coord in range:
+            if (aBottomLeft[1]<=bBottomLeft[1]<=aTopLeft[1]) {  // in range
+
+                // rectangleb top right x coord in range:
+                if (aBottomLeft[0]<=bTopRight[0]<=aBottomRight[0]) {  // in range
+
+                    // rectangleb top right y coord in range:
+                    if (aBottomRight[1]<=bTopRight[1]<=aTopRight[1]) {  // in range
+                        return true;
+                    }
+
+                }
+
+            }
+
+        }
+
+        return false;
+    }
+
+
     // Method that returns the perimeter of the rectangle
     public int perimeter() {
         int perimeter = (this.width*2) + (this.height*2);
