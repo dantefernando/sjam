@@ -1,8 +1,9 @@
 /*
-File Name:  Main.java
+File Name:  Rectangle.java
 Programmer:  Dante F
 Date:  Wednesday, January 18, 2023
-Description: Creating a rectangle class
+Description: Rectangles created on a cartesian plane can be represented using this class
+            given the bottom left x and y coords, height and width.
 */
 
 // import java.util.Scanner;  // For User stdin inputs and to read files

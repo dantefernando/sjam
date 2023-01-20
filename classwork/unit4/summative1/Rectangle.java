@@ -7,9 +7,84 @@ Description: Rectangles created on a cartesian plane can be represented using th
 */
 
 
+import java.util.ArrayList;  // Import ArrayLists used for coords
+import java.util.Collections;  // Import Collections to sort ArrayList
+
 public class Rectangle {
 
     int left, bottom, width, height;
+
+    // Return rectangle that is created when two rectangles (a and b)
+    // are overlapped
+    public static Rectangle intersection(Rectangle a, Rectangle b) {
+
+        // find 4 coords of each corner of a
+        int[] aBottomLeft = {a.left, a.bottom};
+        int[] aBottomRight = {a.left+a.width, a.bottom};
+        int[] aTopLeft = {a.left, a.bottom+a.height};
+        int[] aTopRight = {a.left+a.width, a.bottom+a.height};
+
+        // find 4 coords of each corner of b
+        int[] bBottomLeft = {b.left, b.bottom};
+        int[] bBottomRight = {b.left+b.width, b.bottom};
+        int[] bTopLeft = {b.left, b.bottom+b.height};
+        int[] bTopRight = {b.left+b.width, b.bottom+b.height};
+
+        // Check if any rectangles are inside of each other:
+        if (a.contains(b)) {  // rectangle b is completely inside a
+            return b;
+        }
+        else if (b.contains(a)) {  // rectangle a is completely inside b
+            return a;
+        }
+        else if ((aBottomLeft[0] < bTopRight[0]) && (aBottomLeft[1] < bTopRight[1]) && (aTopRight[0] > bBottomLeft[0]) && (aTopRight[1] > bBottomLeft[1])){  // rectangles overlap
+
+            // add all the x values for both triangles into an arraylist to sort
+            ArrayList<Integer> xValues = new ArrayList<Integer>();
+            xValues.add(aBottomLeft[0]);
+            xValues.add(aBottomRight[0]);
+            xValues.add(bBottomLeft[0]);
+            xValues.add(bBottomRight[0]);
+
+            Collections.sort(xValues);  // sort x values
+
+            // add all the y values for both triangles into an arraylist to sort
+            ArrayList<Integer> yValues = new ArrayList<Integer>();
+            yValues.add(aTopRight[1]);
+            yValues.add(aBottomRight[1]);
+            yValues.add(bTopRight[1]);
+            yValues.add(bBottomRight[1]);
+
+            Collections.sort(yValues);  // sort y values
+
+            Rectangle intersectionRect = new Rectangle(xValues.get(1), yValues.get(1), xValues.get(2)-xValues.get(1), yValues.get(2)-yValues.get(1));
+
+            return intersectionRect;
+
+
+        }
+        else if ( ((aBottomLeft[0] == bTopRight[0]) || (aTopRight[0] == bBottomLeft[0])) && ((bTopRight[1] > aBottomLeft[1] && bTopRight[1] < aTopLeft[1]) || (bBottomRight[1] > aBottomLeft[1] && bBottomRight[1] < aTopLeft[1])) ) {  // touching x is the same
+            // if (bBottomRight[0] == aBottomLeft[0]) {
+            //     // moeilijk
+            //     Rectangle rec = new Rectangle();
+            //     return rec;
+            // }
+            // moeilijk
+            Rectangle rec = new Rectangle();
+            return rec;
+        }
+        else if ( ((aBottomLeft[1] == bTopRight[1]) || (aTopRight[1] == bBottomLeft[1])) && ((aTopRight[0] < bBottomRight[0] && bBottomRight[0] < aTopRight[0]) || (aTopLeft[0] < bBottomLeft[0] && bBottomLeft[0] < aTopRight[0])) ) {  // touching y is the same
+            // moeilijk
+            Rectangle rec = new Rectangle();
+            return rec;
+
+        }
+        else {  // rectangles are disjoint
+            Rectangle empty = new Rectangle(0,0,0,0);
+            return empty;
+        }
+
+    }
 
 
     // return true if rect is entirely within current rectangle
