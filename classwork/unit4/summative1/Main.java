@@ -17,16 +17,14 @@ class Main {
     // Main method
     public static void main(String[] args) {
 
-        Rectangle rect = new Rectangle(-1,-2,21,9);
+        Rectangle a = new Rectangle(10,2,10,9);
+        Rectangle b = new Rectangle(10,2,10,9);
 
-        System.out.println(rect.left);
-        System.out.println(rect.bottom);
-        System.out.println(rect.width);
-        System.out.println(rect.height);
+        // Rectangle b = new Rectangle(10,2,10,9);
+        // Rectangle a = new Rectangle(11,3,5,6);
 
-        System.out.println(rect.toString());
-        System.out.println(rect.area());
-        System.out.println(rect.perimeter());
+        System.out.println(a.contains(b));
+
 
     }
 

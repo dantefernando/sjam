@@ -1,3 +1,11 @@
+/*
+File Name:  Rectangle.java
+Programmer:  Dante F
+Date:  Wednesday, January 18, 2023
+Description: Rectangles created on a cartesian plane can be represented using this class
+            given the bottom left x and y coords, height and width.
+*/
+
 
 public class Rectangle {
 
@@ -5,6 +13,8 @@ public class Rectangle {
 
 
     // return true if rect is entirely within current rectangle
+    // looks at two corners of rectangle and checks if they're
+    // in range of the containing rectangle
     public boolean contains(Rectangle rect) {
         // left = x, bottom = y
         
@@ -20,26 +30,24 @@ public class Rectangle {
         int[] bTopLeft = {rect.left, rect.bottom+rect.height};
         int[] bTopRight = {rect.left+rect.width, rect.bottom+rect.height};
 
-        // rectangleB bottom left x coord in range:
-        if (aBottomLeft[0]<=bBottomLeft[0]<=aBottomRight[0]) {  // in range
-                                                                //
-            // rectangleB bottom left y coord in range:
-            if (aBottomLeft[1]<=bBottomLeft[1]<=aTopLeft[1]) {  // in range
+        // check X bottom left corner of rectangle b
+        if ((bBottomLeft[0] >= aBottomLeft[0]) && (bBottomLeft[0] <= aBottomRight[0])) {
 
-                // rectangleb top right x coord in range:
-                if (aBottomLeft[0]<=bTopRight[0]<=aBottomRight[0]) {  // in range
+            // check Y bottom left corner of rectangle b
+            if ((bBottomLeft[1] >= aBottomLeft[1]) && (bBottomLeft[1] <= aTopLeft[1])) {
 
-                    // rectangleb top right y coord in range:
-                    if (aBottomRight[1]<=bTopRight[1]<=aTopRight[1]) {  // in range
+                // check X top right corner of rectangle b
+                if ((bTopRight[0] >= aBottomLeft[0]) && (bTopRight[0] <= aTopRight[0])) {
+
+                    // check Y top right corner of rectangle b
+                    if ((bTopRight[1] >= aBottomRight[1]) && (bTopRight[1] <= aTopRight[1])) {
+
                         return true;
+
                     }
-
                 }
-
             }
-
         }
-
         return false;
     }
 
